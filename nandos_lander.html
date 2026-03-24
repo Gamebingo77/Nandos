@@ -238,6 +238,60 @@
       font-weight: 500;
     }
     .footer a:hover { color: #D1011B; }
+
+    /* ── NOTIFICATION POPUP ── */
+    .notification {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background: #ffffff;
+      border: 2px solid #D1011B;
+      border-radius: 10px;
+      padding: 14px 18px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      max-width: 320px;
+      transform: translateX(-120%);
+      opacity: 0;
+      transition: transform 0.4s ease, opacity 0.4s ease;
+      z-index: 1000;
+    }
+    .notification.show {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    .notification-icon {
+      min-width: 36px;
+      height: 36px;
+      background: #D1011B;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .notification-icon svg {
+      width: 18px;
+      height: 18px;
+      fill: #ffffff;
+    }
+    .notification-content p {
+      font-size: 13px;
+      font-weight: 500;
+      color: #111111;
+      line-height: 1.4;
+    }
+    .notification-content p strong {
+      color: #D1011B;
+      font-weight: 700;
+    }
+    .notification-time {
+      font-size: 11px;
+      color: #888888;
+      margin-top: 3px;
+    }
   </style>
 </head>
 <body>
@@ -319,5 +373,62 @@
   </div>
 
 </div>
+
+<!-- Notification Popup -->
+<div class="notification" id="notification">
+  <div class="notification-icon">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+    </svg>
+  </div>
+  <div class="notification-content">
+    <p><strong id="notif-name">John D.</strong> has successfully claimed <strong id="notif-amount">£75</strong> gift card</p>
+    <div class="notification-time">Just now</div>
+  </div>
+</div>
+
+<script>
+  const names = [
+    'Emma S.', 'James T.', 'Sophie M.', 'Oliver W.', 'Charlotte B.',
+    'Harry P.', 'Amelia K.', 'George R.', 'Isla F.', 'Jack H.',
+    'Mia L.', 'Noah C.', 'Ava D.', 'Leo J.', 'Grace N.',
+    'Oscar V.', 'Emily R.', 'Alfie B.', 'Poppy A.', 'Charlie G.',
+    'Jessica W.', 'Thomas E.', 'Lily M.', 'William S.', 'Ruby H.',
+    'Henry T.', 'Evie P.', 'Jacob L.', 'Freya C.', 'Daniel K.'
+  ];
+
+  function getRandomName() {
+    return names[Math.floor(Math.random() * names.length)];
+  }
+
+  function getRandomAmount() {
+    return Math.floor(Math.random() * 51) + 50; // 50 to 100
+  }
+
+  function getRandomInterval() {
+    return Math.floor(Math.random() * 3001) + 5000; // 5000ms to 8000ms
+  }
+
+  function showNotification() {
+    const notification = document.getElementById('notification');
+    const nameEl = document.getElementById('notif-name');
+    const amountEl = document.getElementById('notif-amount');
+
+    nameEl.textContent = getRandomName();
+    amountEl.textContent = '£' + getRandomAmount();
+
+    notification.classList.add('show');
+
+    setTimeout(() => {
+      notification.classList.remove('show');
+    }, 4000);
+
+    setTimeout(showNotification, getRandomInterval());
+  }
+
+  // Start showing notifications after initial delay
+  setTimeout(showNotification, 3000);
+</script>
+
 </body>
 </html>
