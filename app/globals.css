@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+:root {
+  --font-barlow: "Barlow", sans-serif;
+  --font-marker: "Permanent Marker", cursive;
+  --color-red: #D1011B;
+  --color-black: #000000;
+  --color-white: #ffffff;
+  --color-gray-light: #f5f5f5;
+  --color-gray: #777777;
+  --color-gray-dark: #555555;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--color-gray-light);
+  font-family: var(--font-barlow);
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+}
