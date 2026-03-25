@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 @theme inline {
-  --font-sans: "Barlow", "Barlow Fallback", sans-serif;
-  --font-marker: "Permanent Marker", cursive;
+  --font-sans: var(--font-barlow), "Barlow", sans-serif;
+  --font-marker: var(--font-marker), "Permanent Marker", cursive;
 }
 
 *, *::before, *::after {

@@ -1,3 +1,5 @@
+"use client";
+
 import { NotificationPopup } from "@/components/notification-popup";
 
 export default function Home() {

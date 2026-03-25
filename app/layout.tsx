@@ -5,11 +5,13 @@ import "./globals.css";
 const barlow = Barlow({
   subsets: ["latin"],
   weight: ["400", "500", "600", "800"],
+  variable: "--font-barlow",
 });
 
 const permanentMarker = Permanent_Marker({
   subsets: ["latin"],
   weight: "400",
+  variable: "--font-marker",
 });
 
 export const metadata: Metadata = {
@@ -23,8 +25,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${barlow.className} font-sans`}>
+    <html lang="en" className={`${barlow.variable} ${permanentMarker.variable}`}>
+      <body>
         {children}
       </body>
     </html>
